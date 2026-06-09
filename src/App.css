@@ -1,38 +1,340 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0d1b2a 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 1400px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #0b3d5f, #062c44);
+  color: white;
+  padding: 25px 30px;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.header h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.header p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  color: #b8d4e3;
+}
+
+/* Alert messages */
+.alert {
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.alert.error {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 5px solid #c62828;
+}
+
+.alert.success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 5px solid #2e7d32;
+}
+
+/* Interviewer selector */
+.interviewer-selector {
+  background: #e0e0e0;
+  padding: 18px 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.interviewer-selector label {
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+}
+
+.interviewer-selector select {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 14px;
+  background: white;
+  color: #333;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Dashboard layout */
+.dashboard {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 25px;
+}
+
+/* Form cards - GRAY COLORS */
+.form-card {
+  background: #e8e8e8;
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+}
+
+.form-card:hover {
+  transform: translateY(-3px);
+}
+
+.form-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-card input,
+.form-card select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: all 0.2s;
+  background: white;
+  color: #333;
+}
+
+.form-card input:focus,
+.form-card select:focus {
+  outline: none;
+  border-color: #4a7cbb;
+  box-shadow: 0 0 0 2px rgba(74,124,187,0.2);
+}
+
+.form-card input::placeholder {
+  color: #999;
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 5px;
+}
+
+button:hover {
+  background: #1a252f;
+  transform: scale(1.02);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Calendar container */
+.calendar-container {
+  background: #e0e0e0;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.calendar-container h2 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #bbb;
+}
+
+/* Timezone badge */
+.timezone-badge {
+  background: #d0d0d0;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: #333;
+}
+
+.timezone-hint {
+  display: block;
+  font-size: 11px;
+  color: #666;
+  margin-top: -8px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Date grouping */
+.date-group {
+  margin-bottom: 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.date-header {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #bbb;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Interview cards */
+.interview-card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 14px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  transition: all 0.2s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.App-link {
-  color: #61dafb;
+.interview-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.interview-info {
+  flex: 1;
+}
+
+.candidate-name {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.interview-time {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.interview-email {
+  font-size: 11px;
+  color: #888;
+}
+
+/* Status select - No icons, clean look */
+.status-select {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  background: white;
+  color: #333;
+}
+
+.status-select:hover {
+  border-color: #2c3e50;
+}
+
+/* Loading and empty states */
+.loading {
+  text-align: center;
+  padding: 50px;
+  color: #555;
+  font-size: 1rem;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.no-interviews {
+  text-align: center;
+  padding: 50px;
+  color: #666;
+  background: #d0d0d0;
+  border-radius: 15px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dashboard {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .interview-card {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .status-select {
+    width: auto;
+    min-width: 150px;
   }
 }
